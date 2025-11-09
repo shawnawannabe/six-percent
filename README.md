@@ -15,7 +15,7 @@ Progress:
 - block 2
 - block 3
 - look at whole flow before cont further
- - make a map of the flow with excalidraw
+  - make a map of the flow with excalidraw
 
 Blocks:
 1. in venv, after commenting gui.py, it is still somewhat called when calling main.py (solved: installed missing modules)
