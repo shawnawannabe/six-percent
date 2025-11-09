@@ -3,7 +3,6 @@ import os
 import re
 import sys
 from typing import Any, Dict
-
 import PySimpleGUI as sg  # type: ignore
 from PySimpleGUI.PySimpleGUI import Column  # type: ignore
 

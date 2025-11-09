@@ -1,145 +1,27 @@
-<h1 align="center">Six Percent</h1>
+Switch this repo to run on mac with python only instead (was config to compile to an exe to run on windows)
 
-<p align="center">
-  <img src="https://imgur.com/IYGMoUo.png">
-</p>
-<br />
+Issues:
+- old code not working at all despite manually installing all the packages with respective versions
 
-[![build](https://github.com/ngshiheng/six-percent/actions/workflows/build.yml/badge.svg)](https://github.com/ngshiheng/six-percent/actions/workflows/build.yml)
-[![lint](https://github.com/ngshiheng/six-percent/actions/workflows/lint.yml/badge.svg)](https://github.com/ngshiheng/six-percent/actions/workflows/lint.yml)
-[![release](https://github.com/ngshiheng/six-percent/actions/workflows/release.yml/badge.svg)](https://github.com/ngshiheng/six-percent/actions/workflows/release.yml)
+To-dos:
+- switch to use python venv instead of peotry temporarily for easily set up
 
-Please read the [disclaimer](./docs/DISCLAIMER.md) before using.
+Progress:
+- create a virtual env temporarily
+- working on making in run
+- comment all the unneeded modules for now
+- block 1
+- reread main code, seems like gui.py is needed no matter what
+- block 2
+-> block 3
 
-This bot helps users to buy [ASNB Fixed Price UT units](#FAQ).
+Blocks:
+1. in venv, after commenting gui.py, it is still somewhat called when calling main.py (solved: installed missing modules)
+2. No module named '_tkinter' (solved: brew install python-tk@3.14)
+3. python keep crashes after pysimplegui is working (solution: go with FreeSimpleGUI or Pyside6)
 
-The user shall proceed to **make his/her own payment** only if there is a successful purchase attempt.
-
-Currently, this bot supports up to 3 fixed price unit trusts:
-
--   ASM (Malaysia)
--   ASM2 (Wawasan)
--   ASM3 (1Malaysia)
-
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [How It Works](#how-it-works)
-- [Development](#development)
-  - [Requirements](#requirements)
-  - [Installation (Windows 10/11)](#installation-windows-1011)
-  - [Run with Python](#run-with-python)
-  - [Compiling to `exe`](#compiling-to-exe)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Disclaimer](#disclaimer)
-- [FAQ](#faq)
-
-## How It Works
-
-```mermaid
-sequenceDiagram
-    participant Bot
-    participant Login
-    participant Portfolio
-    participant Transactions
-    participant Payment
-    participant Logout
-    link Bot: SixPercent @ https://github.com/ngshiheng/six-percent
-    link Login: https://www.myasnb.com.my/login
-    link Portfolio: https://www.myasnb.com.my/portfoio
-    link Transactions: https://www.myasnb.com.my/transactions
-    link Logout: https://www.myasnb.com.my/logout
-
-    Bot->>Login: launch browser
-    Login->>Portfolio: success
-    Portfolio->>Transactions: select ASM
-    loop 10 attempts
-        Transactions->>Transactions: purchase
-    end
-    Transactions->>Payment: success
-    Payment->>Logout: success
-    Transactions-->>Portfolio: failed
-    loop ASM, ASM2, ASM3
-        Portfolio->>Portfolio: select fund
-    end
-    Portfolio->>Logout: no successful purchase attempt
-```
-
-## Development
-
-### Requirements
-
--   Windows 10+
--   [python](https://www.python.org/) 3.8+
--   [pip](https://pip.pypa.io/en/stable/) package installer
--   [poetry](https://python-poetry.org/docs/)
--   [chromedriver](https://chromedriver.chromium.org/downloads) based on your OS & [Chrome version](chrome://settings/help)
-
-### Installation (Windows 10/11)
-
-We use [poetry](https://python-poetry.org/docs/basic-usage/) to manage our dependencies.
-
-Start by installing all the dependencies
-
-```sh
-poetry install --no-root
-pre-commit install
-```
-
-### Run with Python
-
-```sh
-poetry run python main.py
-```
-
-### Compiling to `exe`
-
-Optional: to generate a new `SixPercent.spec` file, run the following:
-
-```sh
-pyi-makespec main.py --name SixPercent --icon "img\favicon.ico" --onefile --console --add-binary "bin\driver\chromedriver.exe;bin\driver\"
-```
-
-1. To (re)generate the executable, run `pyinstaller SixPercent.spec --clean`
-
-2. A `SixPercent.exe` will be generated inside the `dist/` folder
-
-3. Run `SixPercent.exe` and use the bot
-
-## Usage
-
-Read [USAGE.md](./docs/USAGE.md).
-
-## Contributing
-
-Read [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
-
-## Disclaimer
-
-Read [DISCLAIMER.md](./docs/DISCLAIMER.md).
-
-## FAQ
-
-For more details, visit [myASNB Official Website](https://www.myasnb.com.my/)
-
-> What is myASNB Fixed Price Fund?
-
--   ASNB is a subsidiary of “Permodalan Nasional Berhad” (PNB). It is a government-supported unit trust management company.
--   Amanah Saham are funds that are managed by Amanah Saham National Berhad (ASNB).
-
-> How does the fund work? Why should I care?
-
--   If there is no unit available, you will never be able to purchase new units or open up a new account.
--   A fixed price (RM 1/unit) means there will be no price fluctuation. These funds can thus be regarded as saving accounts.
--   The dividend earned is not taxable.
-
-> Is there any sales charge or additional fees?
-
--   No sales charge.
--   No additional fees.
-
-> How to start buying or investing?
-
--   You need an ASNB account in order to start investing.
--   You can perform all the transactions (including opening an account) at any ASNB branch or agent.
+Solution trial for blocks:
+3. 
+- debug, error pops as soon as step into importing PysimpleGUI
+- tried running a seperate file by importing PySimpleGUI, seems like a lot of the functions are not working
+- looking at PySimpleGUI module, turns out PySimpleGUI has shut down its free version completely, seems like the author is not happy his code is not generating any monies! looking into alternatives for PySimpleGUI
