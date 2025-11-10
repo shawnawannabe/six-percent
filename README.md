@@ -14,8 +14,10 @@ Progress:
 - reread main code, seems like gui.py is needed no matter what
 - block 2
 - block 3
-- look at whole flow before cont further
+- --->look at whole flow before cont further, easier to see what is needed for gui and we can just simulate the inputs and skip the gui entirely to save time
   - make a map of the flow with excalidraw
+- the whole flow is a recursive run function that takes 2 input and run it every 5 mins
+- simulate those 2 inputs
 
 Blocks:
 1. in venv, after commenting gui.py, it is still somewhat called when calling main.py (solved: installed missing modules)
