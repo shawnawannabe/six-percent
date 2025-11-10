@@ -18,6 +18,7 @@ Progress:
   - make a map of the flow with excalidraw
 - the whole flow is a recursive run function that takes 2 input and run it every 5 mins
 - simulate those 2 inputs
+- simulated user_credentials, now working on web driver, a bit more tricky since its not as straight forward
 
 Blocks:
 1. in venv, after commenting gui.py, it is still somewhat called when calling main.py (solved: installed missing modules)
